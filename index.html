@@ -27,7 +27,7 @@
 
   $.getJSON("rodents.geojson",function(data){
     var ratIcon = L.icon({
-    iconUrl: 'http://maptimeboston.github.io/leaflet-intro/rat.gif',
+    iconUrl: 'http://maptimeboston.github.io/leaflet-intro/rat.png',
     iconSize: [50,40]
   }); 
   L.geoJson(data  ,{
@@ -36,6 +36,11 @@
     }
   }  ).addTo(map);
 });
+  pointToLayer: function(feature,latlng){
+     var marker = L.marker(latlng,{icon: ratIcon});
+   marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
+   return marker; 
+}
  
   </script>
 </body>

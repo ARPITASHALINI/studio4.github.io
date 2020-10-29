@@ -64,14 +64,20 @@ $.getJSON("rodents.geojson",function(data){
       var marker = L.marker(latlng,{icon: ratIcon});
       marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
       return marker;
+      var locations = data.features.map(function(rat) {
+	  var location = rat.geometry.coordinates.reverse();
+          location.push(0.5);
+          return location;
     }
   }).addTo(map);
      var clusters = L.markerClusterGroup();
      clusters.addLayer(rodents);
      map.addLayer(clusters).addTo(map);
+	  
+    var heat = L.heatLayer(locations, { radius: 35 });
+    map.addLayer(heat);
+  });
 	
-  var heat = L.heatLayer(locations, { radius: 35 });
-  map.addLayer(heat); 
 });
 
  

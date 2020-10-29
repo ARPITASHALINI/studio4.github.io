@@ -36,13 +36,14 @@
     }
   }  ).addTo(map);
 });
-  L.geoJson(data ,{
-    	pointToLayer: function(feature,latlng){
-				var marker = L.marker(latlng,{icon: ratIcon});
-				marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
-				return marker;
-    }}).addTo(map);
-  });
+  L.geoJson(data,{
+      pointToLayer: function(feature,latlng){
+        	    var marker = L.marker(latlng,{icon: ratIcon});
+                    marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
+        return marker;
+      }
+    }).addTo(map);
+  
 
  
   </script>

@@ -58,7 +58,7 @@ $.getJSON("rodents.geojson",function(data){
     iconUrl: 'http://maptimeboston.github.io/leaflet-intro/rat.png',
     iconSize: [60,50]
   });
-  L.geoJson(data,{
+  var rodents = L.geoJson(data,{
     pointToLayer: function(feature,latlng){
       var marker = L.marker(latlng,{icon: ratIcon});
       marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);

@@ -75,8 +75,7 @@ $.getJSON("neighborhoods.geojson",function(hoodData){
 	  
  var clusters = L.markerClusterGroup();
      clusters.addLayer(rodents);
-     map.addLayer(clusters);
- }).addTo(map);
+     map.addLayer(clusters).addTo(map);
  
 
  

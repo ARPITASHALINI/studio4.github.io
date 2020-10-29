@@ -30,11 +30,11 @@
     iconUrl: 'http://maptimeboston.github.io/leaflet-intro/rat.png',
     iconSize: [50,40]
   }); 
-  L.geoJson(data  ,{
-    pointToLayer: function(feature,latlng){
-	  return L.marker(latlng,{icon: ratIcon});
-    }
-  }  ).addTo(map);
+  //L.geoJson(data  ,{
+    //pointToLayer: function(feature,latlng){
+	//  return L.marker(latlng,{icon: ratIcon});
+    //}
+  //}).addTo(map);
 });
   L.geoJson(data,{
       pointToLayer: function(feature,latlng){

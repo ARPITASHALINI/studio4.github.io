@@ -52,18 +52,6 @@ $.getJSON("neighborhoods.geojson",function(hoodData){
       }
     }).addTo(map);
   });
- 
-
- $.getJSON("rodents.geojson",function(data){
-    var locations = data.features.map(function(rat) {
-    var location = rat.geometry.coordinates.reverse();
-    location.push(0.5);
-    return location;
-  });
-
-  var heat = L.heatLayer(locations, { radius: 35 });
-  map.addLayer(heat); 
-}).addTo(map);
   
  var rodents = L.geoJson(data,{
       pointToLayer: function(feature,latlng){
@@ -76,6 +64,17 @@ $.getJSON("neighborhoods.geojson",function(hoodData){
  var clusters = L.markerClusterGroup();
      clusters.addLayer(rodents);
      map.addLayer(clusters).addTo(map);
+	 
+$.getJSON("rodents.geojson",function(data){
+    var locations = data.features.map(function(rat) {
+    var location = rat.geometry.coordinates.reverse();
+    location.push(0.5);
+    return location;
+  });
+
+  var heat = L.heatLayer(locations, { radius: 35 });
+  map.addLayer(heat); 
+}).addTo(map);
  
 
  

@@ -63,7 +63,7 @@ $.getJSON("neighborhoods.geojson",function(hoodData){
 
   var heat = L.heatLayer(locations, { radius: 35 });
   map.addLayer(heat); 
-});
+}).addTo(map);
   
  var rodents = L.geoJson(data,{
       pointToLayer: function(feature,latlng){

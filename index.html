@@ -6,8 +6,10 @@
  	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />
   	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
   	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+	<script src="./leaflet-heat.js"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>	
+	<script src="./leaflet-heat.js"></script>
   <style>
 	  
     #map{ width: 1000px; height: 700px; }
@@ -53,10 +55,15 @@ $.getJSON("neighborhoods.geojson",function(hoodData){
  
 
  $.getJSON("rodents.geojson",function(data){
-    var ratIcon = L.icon({
-    iconUrl: 'http://maptimeboston.github.io/leaflet-intro/rat.png',
-    iconSize: [50,40]
-  }); 
+    var locations = data.features.map(function(rat) {
+    var location = rat.geometry.coordinates.reverse();
+    location.push(0.5);
+    return location;
+  });
+
+  var heat = L.heatLayer(locations, { radius: 35 });
+  map.addLayer(heat); 
+});
   
  var rodents = L.geoJson(data,{
       pointToLayer: function(feature,latlng){

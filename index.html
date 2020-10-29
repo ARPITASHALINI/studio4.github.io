@@ -53,21 +53,9 @@ $.getJSON("neighborhoods.geojson",function(hoodData){
     }).addTo(map);
   });
 	 
-$.getJSON("rodents.geojson",function(data){
-  var ratIcon = L.icon({
-    iconUrl: 'rat.png',
-    iconSize: [60,50]
-  });
-});
 	
 $.getJSON("rodents.geojson",function(data){
-    var locations = data.features.map(function(rat) {
-    var location = rat.geometry.coordinates.reverse();
-    location.push(0.5);
-    return location;
-  });
-  
- var rodents = L.geoJson(data,{
+    var rodents = L.geoJson(data,{
       pointToLayer: function(feature,latlng){
         var marker = L.marker(latlng,{icon: ratIcon});
         marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
@@ -79,10 +67,6 @@ $.getJSON("rodents.geojson",function(data){
      clusters.addLayer(rodents);
      map.addLayer(clusters).addTo(map);
 	 
-
-  var heat = L.heatLayer(locations, { radius: 35 });
-  map.addLayer(heat); 
-}).addTo(map);
  
 
  

@@ -57,7 +57,8 @@ $.getJSON("rodents.geojson",function(data){
   var ratIcon = L.icon({
     iconUrl: 'rat.png',
     iconSize: [60,50]
-  }).addTo(map);
+  });
+});
 	
 $.getJSON("rodents.geojson",function(data){
     var locations = data.features.map(function(rat) {

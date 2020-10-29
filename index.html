@@ -24,6 +24,11 @@
       maxZoom: 17,
       minZoom: 9
     }).addTo(map);
+	  
+  $.getJSON("neighborhoods.geojson",function(hoodData){
+    L.geoJson( hoodData ).addTo(map);
+  });
+ 
 
   $.getJSON("rodents.geojson",function(data){
     var ratIcon = L.icon({
